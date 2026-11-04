@@ -64,7 +64,8 @@ class NotaCredito(Base):
     tienda: Mapped[Tienda] = relationship()
     compania: Mapped[Compania] = relationship()
     eventos: Mapped[list["NotaCreditoEvento"]] = relationship(
-        back_populates="nota", order_by="NotaCreditoEvento.creado_en"
+        back_populates="nota",
+        order_by=lambda: [NotaCreditoEvento.creado_en, NotaCreditoEvento.id],
     )
 
 
