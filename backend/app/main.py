@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api import auth, cargos, colaboradores, departamentos
+from app.api import auth, cargos, catalogos, colaboradores, departamentos, notas_credito
 from app.config import settings
 
 logger = logging.getLogger(__name__)
@@ -31,6 +31,8 @@ app.include_router(auth.router)
 app.include_router(departamentos.router)
 app.include_router(colaboradores.router)
 app.include_router(cargos.router)
+app.include_router(catalogos.router)
+app.include_router(notas_credito.router)
 
 
 @app.get("/api/health")
