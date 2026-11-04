@@ -51,3 +51,13 @@ Herramientas usadas: Claude
 **Veredicto:** Aceptado
 
 **Razón:** Los 32 tests pasaron contra PostgreSQL y comprobé en `/docs` que el login fija una cookie `HttpOnly`, que `/me` responde 401 sin sesión y que una contraseña incorrecta recibe un mensaje genérico. Acepté mover los tests 3 y 4 a la Fase 3 porque requieren endpoints que aún no existen.
+
+## Entrada 5 — Fase 3 — 2026-11-04
+
+**Prompt (resumido):** Implementar los endpoints de departamentos, colaboradores y cargos según la matriz de permisos, con dos schemas de colaborador y tests de alcance.
+
+**Qué propuso la IA:** Alcance por departamento en SQL; 404 fuera de alcance; `ColaboradorPublico` y `ColaboradorDetalle`; ocultar inactivos e ignorar el filtro de estado para el Colaborador; ficha y cargo solo propios para ese rol; búsqueda con comodines escapados; y agregar `colaborador_id` y `cargo_id` a `/me` para Mi perfil.
+
+**Veredicto:** Aceptado
+
+**Razón:** Los 63 tests pasaron y comprobé en `/docs` que ADMIN ve todos los departamentos, el Jefe solo el suyo y el Colaborador recibe la vista limitada, con 404 en fichas ajenas. Acepté ocultarle los compañeros inactivos porque, si no, podría deducir un estado que su vista excluye.

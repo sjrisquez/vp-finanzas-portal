@@ -2,7 +2,7 @@
 
 Portal interno con datos ficticios para consultar la estructura de la VP de Finanzas y gestionar notas de crédito.
 
-> Estado: Fase 2. Incluye base de datos, datos de demo, inicio de sesión y permisos. Los módulos llegan en las fases siguientes.
+> Estado: Fase 3. Incluye base de datos, datos de demo, inicio de sesión, permisos y endpoints de consulta. El flujo de notas de crédito y las pantallas llegan en las fases siguientes.
 
 ## Requisitos
 

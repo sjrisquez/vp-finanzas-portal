@@ -147,6 +147,10 @@ erDiagram
 - **`get_current_user`:** lee la cookie, valida el token y carga el usuario desde la BD en cada petición. El rol nunca se toma del token.
 - **`require_roles`:** protege cada endpoint según el rol, y responde 403 si el rol no está permitido.
 - **`aplicar_alcance_departamento`:** agrega el `WHERE` por departamento a la consulta SQL. ADMIN y APROBADOR tienen alcance global.
+- **404 fuera de alcance:** un recurso de otro departamento responde igual que uno inexistente, para no revelar que existe.
+- **Vista limitada:** el Colaborador recibe `ColaboradorPublico`, sin fecha de ingreso, país ni estado. Los campos no se ocultan en el frontend: la API no los envía.
+- **Inactivos en la vista limitada:** el Colaborador solo ve compañeros activos y no puede filtrar por estado, porque eso revelaría un dato que su vista excluye.
+- **Fichas del Colaborador:** solo puede abrir su propia ficha y su propio cargo.
 
 ## 6. Decisiones de seguridad
 
