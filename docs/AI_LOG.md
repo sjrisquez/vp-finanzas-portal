@@ -41,3 +41,13 @@ Herramientas usadas: Claude
 **Por qué estaba mal:** El bundle no incluía `HEAD`, así que `git clone` no creó la rama `main` y `git push` falló con `src refspec main does not match any`.
 
 **Cómo se corrigió:** Se creó la rama local con `git switch -c main origin/main` y se volvió a ejecutar el push.
+
+## Entrada 4 — Fase 2 — 2026-11-04
+
+**Prompt (resumido):** Implementar autenticación con JWT en cookie httpOnly, login, logout y `/me`, dependencias de rol y alcance por departamento, y sus tests.
+
+**Qué propuso la IA:** JWT HS256 con algoritmo fijado; usuario cargado de la BD en cada petición; mensaje único de login y bcrypt también para correos inexistentes; `str` en lugar de `EmailStr` por el dominio `.test`; manejador genérico de errores; tests sobre la migración real con protección de la base de test; y traslado de los tests 3 y 4 a la Fase 3.
+
+**Veredicto:** Aceptado
+
+**Razón:** Los 32 tests pasaron contra PostgreSQL y comprobé en `/docs` que el login fija una cookie `HttpOnly`, que `/me` responde 401 sin sesión y que una contraseña incorrecta recibe un mensaje genérico. Acepté mover los tests 3 y 4 a la Fase 3 porque requieren endpoints que aún no existen.

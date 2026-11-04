@@ -2,7 +2,7 @@
 
 Portal interno con datos ficticios para consultar la estructura de la VP de Finanzas y gestionar notas de crédito.
 
-> Estado: Fase 1. Incluye la base de datos, la migración y los datos de demo. El inicio de sesión llega en la Fase 2.
+> Estado: Fase 2. Incluye base de datos, datos de demo, inicio de sesión y permisos. Los módulos llegan en las fases siguientes.
 
 ## Requisitos
 
@@ -56,6 +56,16 @@ npm run dev
 App: <http://localhost:5173>.
 
 El seed borra y recrea los datos de demo cada vez que se ejecuta.
+
+## Tests
+
+Requieren la base de datos levantada. Desde `backend/`, con el entorno virtual activo:
+
+```powershell
+pytest
+```
+
+Usan `vpfinanzas_test` y vacían sus tablas; nunca tocan los datos de desarrollo.
 
 ## Usuarios de demo
 

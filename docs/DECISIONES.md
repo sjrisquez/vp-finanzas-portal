@@ -144,8 +144,23 @@ erDiagram
 
 ## 5. Matriz de permisos y su aplicación
 
+- **`get_current_user`:** lee la cookie, valida el token y carga el usuario desde la BD en cada petición. El rol nunca se toma del token.
+- **`require_roles`:** protege cada endpoint según el rol, y responde 403 si el rol no está permitido.
+- **`aplicar_alcance_departamento`:** agrega el `WHERE` por departamento a la consulta SQL. ADMIN y APROBADOR tienen alcance global.
+
 ## 6. Decisiones de seguridad
 
+- **Contraseñas:** bcrypt con costo 12; nunca se guardan ni se devuelven en claro.
+- **Sesión:** JWT HS256 de 60 minutos en una cookie `httpOnly`, `SameSite=Lax` y `Secure` configurable. El algoritmo está fijado al verificar.
+- **Login:** mismo mensaje para usuario inexistente, contraseña errónea o cuenta inactiva. bcrypt también se ejecuta si el usuario no existe, para reducir diferencias de tiempo.
+- **Desactivación:** la cuenta se comprueba en cada petición, así que el acceso se pierde de inmediato.
+- **Errores internos:** el cliente recibe un mensaje genérico; el detalle queda en el log del servidor.
+
 ## 7. Limitaciones conocidas
+
+- **Cierre de sesión:** borra la cookie, pero un token copiado antes sigue siendo válido hasta expirar, porque no hay lista de revocación.
+- **Sin refresh tokens:** la sesión termina a los 60 minutos.
+- **Sin rate limiting:** el login no limita los intentos.
+- **Sin token CSRF dedicado:** la mitigación es `SameSite=Lax`, API solo JSON y CORS restringido.
 
 ## 8. Qué haría con más tiempo
