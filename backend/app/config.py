@@ -24,7 +24,8 @@ class Settings(BaseSettings):
     cookie_secure: bool = False
 
     cors_origins: str
-    nc_umbral_doble_aprobacion: Decimal = Field(gt=0)
+    nc_umbral_usd: Decimal = Field(gt=0)
+    nc_umbral_ves: Decimal = Field(gt=0)
 
     seed_default_password: str = Field(repr=False)
 
