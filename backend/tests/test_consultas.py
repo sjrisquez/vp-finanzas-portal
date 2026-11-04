@@ -123,7 +123,7 @@ def test_alcance_global_ve_todo_con_vista_completa(iniciar_sesion, clave):
 
     respuesta = cliente.get("/api/colaboradores")
 
-    assert len(respuesta.json()) == 8
+    assert len(respuesta.json()) == 9
     assert "fecha_ingreso" in respuesta.json()[0]
 
 

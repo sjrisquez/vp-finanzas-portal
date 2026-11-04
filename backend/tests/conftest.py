@@ -13,7 +13,17 @@ from sqlalchemy.orm import Session, sessionmaker
 from app.config import settings
 from app.db import Base, get_db
 from app.main import app
-from app.models import Cargo, Colaborador, Departamento, Nivel, Pais, Usuario
+from app.models import (
+    Cargo,
+    Colaborador,
+    Compania,
+    Departamento,
+    MotivoNotaCredito,
+    Nivel,
+    Pais,
+    Tienda,
+    Usuario,
+)
 from app.security.passwords import hash_password
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -85,6 +95,7 @@ def usuarios(db: Session) -> dict[str, Usuario]:
         "jefe_tes": usuario("jefetes", "JEFE_DEPARTAMENTO", jefe_tes),
         "jefe_con": usuario("jefecon", "JEFE_DEPARTAMENTO", jefe_con),
         "aprobador": usuario("aprobador", "APROBADOR", subgerente),
+        "aprobador2": usuario("auditora", "APROBADOR", subgerente),
         "colab_tes": usuario("colabtes", "COLABORADOR", analista_tes),
         "colab_con": usuario("colabcon", "COLABORADOR", analista_con),
         "usuario_inactivo": usuario("usuarioinactivo", "COLABORADOR", analista_tes, activo=False),
@@ -93,6 +104,23 @@ def usuarios(db: Session) -> dict[str, Usuario]:
     db.add_all(resultado.values())
     db.commit()
     return resultado
+
+
+@pytest.fixture()
+def catalogos(db: Session, usuarios: dict[str, Usuario]) -> dict[str, int]:
+    pais = usuarios["admin"].colaborador.pais
+    motivo = MotivoNotaCredito(codigo="ERROR", nombre="Error de facturacion")
+    motivo2 = MotivoNotaCredito(codigo="DEVOLUCION", nombre="Devolucion de producto")
+    tienda = Tienda(nombre="Tienda de prueba", pais=pais)
+    compania = Compania(nombre="Compania de prueba", rubro="Farmaceutico")
+    db.add_all([motivo, motivo2, tienda, compania])
+    db.commit()
+    return {
+        "motivo": motivo.id,
+        "motivo2": motivo2.id,
+        "tienda": tienda.id,
+        "compania": compania.id,
+    }
 
 
 @pytest.fixture()
