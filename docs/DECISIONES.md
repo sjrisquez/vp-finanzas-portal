@@ -2,6 +2,12 @@
 
 ## 1. Stack elegido y justificación
 
+- **Backend: FastAPI, SQLAlchemy 2, Alembic y Pydantic.** Validación declarativa, documentación en `/docs` y migraciones versionadas.
+- **Base de datos: PostgreSQL 16.** Es relacional real y ofrece `NUMERIC`, `TIMESTAMPTZ`, `CHECK` y `SELECT ... FOR UPDATE`.
+- **Frontend: React 18, Vite y TypeScript.** React es un framework exigido por la prueba con amplio ecosistema; TypeScript tipa las respuestas de la API y Vite permite un proxy simple en desarrollo.
+- **React Router, TanStack Query y Tailwind CSS.** Resuelven rutas, caché y estados de carga, y estilos, sin escribir esa infraestructura a mano.
+- **Autenticación: JWT en cookie `httpOnly`.** El token no es accesible desde JavaScript.
+
 ## 2. Modelo de datos
 
 ```mermaid
@@ -140,7 +146,19 @@ erDiagram
 
 ## 3. Proceso de negocio elegido
 
+Se eligió el flujo de aprobación de notas de crédito (Opción 2) porque encaja con el modelo organizacional y ejercita separación de funciones, alcance por rol y auditoría.
+
+- **Máquina de estados:** `TRANSICIONES` en `services/notas_credito.py` define qué acciones admite cada estado.
+- **Separación de funciones:** nadie firma lo que solicitó, ni siquiera ADMIN, y la segunda firma debe ser de otra persona.
+- **Doble aprobación:** un monto mayor al umbral de su moneda exige dos firmas. La regla se guarda en la nota y se recalcula al reenviarla.
+- **Concurrencia:** cada transición bloquea la fila con `SELECT ... FOR UPDATE`, así que dos aprobadores simultáneos no pueden actuar sobre el mismo estado.
+- **Auditoría transaccional:** el estado y su evento se confirman juntos; si algo falla, no queda ninguno.
+- **Códigos de error:** 404 fuera de alcance, 403 rol no permitido o autoaprobación, 409 transición inválida y 422 validación.
+- **Datos de demo:** las 25 notas del dataset se reproducen mediante el servicio. Se conservan montos, fechas y comentarios; las referencias de factura, descripciones, usuarios y segundas firmas son adaptaciones necesarias para este modelo. Se agregan 3 notas, identificadas como adicionales, para mostrar estados que el dataset no incluye.
+
 ## 4. Resolución de la ambigüedad de roles
+
+El Colaborador es de solo lectura y el aprobador debe tener un rol distinto al del solicitante. Por eso se agrega el rol APROBADOR, asignado en Contraloría. ADMIN también puede aprobar, pero nunca sus propias solicitudes.
 
 ## 5. Matriz de permisos y su aplicación
 
@@ -166,5 +184,14 @@ erDiagram
 - **Sin refresh tokens:** la sesión termina a los 60 minutos.
 - **Sin rate limiting:** el login no limita los intentos.
 - **Sin token CSRF dedicado:** la mitigación es `SameSite=Lax`, API solo JSON y CORS restringido.
+- **Sin paginación, despliegue ni recuperación de contraseña:** el alcance es una demo local con datos ficticios.
+- **El seed usa `TRUNCATE`:** el trigger de auditoría solo cubre `UPDATE` y `DELETE`.
+- **El frontend no valida permisos:** oculta acciones para mejorar la experiencia, pero la autorización real está en el backend.
 
 ## 8. Qué haría con más tiempo
+
+- Rate limiting en el login, refresh tokens y revocación de sesiones.
+- Permisos en tablas en lugar de `CHECK` y código.
+- Paginación, notificaciones y reportes del módulo de notas.
+- CI con tests, despliegue con HTTPS y tests del frontend.
+- Excepciones de negocio propias en lugar de `HTTPException` en el servicio.

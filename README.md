@@ -2,7 +2,11 @@
 
 Portal interno con datos ficticios para consultar la estructura de la VP de Finanzas y gestionar notas de crédito.
 
-> Estado: Fase 3. Incluye base de datos, datos de demo, inicio de sesión, permisos y endpoints de consulta. El flujo de notas de crédito y las pantallas llegan en las fases siguientes.
+## Módulos
+
+- **Directorio:** colaboradores según rol y departamento, con filtros.
+- **Ficha de cargo y Mi perfil:** datos del colaborador, cargo, nivel y funciones.
+- **Notas de crédito:** creación, aprobación con doble firma por umbral, rechazo, devolución, reenvío y auditoría visible.
 
 ## Requisitos
 
@@ -56,6 +60,13 @@ npm run dev
 App: <http://localhost:5173>.
 
 El seed borra y recrea los datos de demo cada vez que se ejecuta.
+
+## Recorrido recomendado
+
+1. `fabian.lozada` crea una nota mayor a 4000 USD en Cuentas por Cobrar.
+2. `hector.zambrano` da la primera firma y comprueba que no puede dar la segunda.
+3. `irene.cordero` da la segunda firma y revisa el historial.
+4. `joaquin.rivas` comprueba que no ve el módulo y que su directorio es limitado.
 
 ## Tests
 
