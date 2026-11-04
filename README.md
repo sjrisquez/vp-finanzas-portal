@@ -2,7 +2,7 @@
 
 Portal interno con datos ficticios para consultar la estructura de la VP de Finanzas y gestionar notas de crédito.
 
-> Estado: Fase 0. Solo incluye la infraestructura base, sin lógica de negocio.
+> Estado: Fase 1. Incluye la base de datos, la migración y los datos de demo. El inicio de sesión llega en la Fase 2.
 
 ## Requisitos
 
@@ -36,6 +36,8 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python -c "import secrets; print(secrets.token_urlsafe(48))"
+alembic upgrade head
+python -m app.seed.seed
 uvicorn app.main:app --reload
 ```
 
@@ -52,6 +54,30 @@ npm run dev
 ```
 
 App: <http://localhost:5173>.
+
+El seed borra y recrea los datos de demo cada vez que se ejecuta.
+
+## Usuarios de demo
+
+Todos usan la contraseña definida en `SEED_DEFAULT_PASSWORD`. El dominio de los correos es `@vpfinanzas.test`.
+
+| Rol | Departamento | Correo |
+|---|---|---|
+| ADMIN | Planificación Financiera | `alma.quintanar` |
+| JEFE_DEPARTAMENTO | Planificación Financiera | `bruno.salcedo` |
+| JEFE_DEPARTAMENTO | Tesorería | `celia.arvelo` |
+| JEFE_DEPARTAMENTO | Contraloría | `dario.ugarte` |
+| JEFE_DEPARTAMENTO | Contabilidad | `elena.pacheco` |
+| JEFE_DEPARTAMENTO | Cuentas por Cobrar | `fabian.lozada` |
+| JEFE_DEPARTAMENTO | Cuentas por Pagar | `gloria.bermudez` |
+| APROBADOR | Contraloría | `hector.zambrano` |
+| APROBADOR | Contraloría | `irene.cordero` |
+| COLABORADOR | Planificación Financiera | `joaquin.rivas` |
+| COLABORADOR | Tesorería | `karla.mendoza` |
+| COLABORADOR | Contraloría | `luis.ferrer` |
+| COLABORADOR | Contabilidad | `marta.ibarra` |
+| COLABORADOR | Cuentas por Cobrar | `nestor.paredes` |
+| COLABORADOR | Cuentas por Pagar | `olga.tovar` |
 
 ## Documentación
 
