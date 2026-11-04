@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-papel font-sans text-texto antialiased;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  button:focus-visible,
+  a:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-tintaSuave;
+  }
+}
+
+@layer components {
+  /* Los montos y fechas se alinean mejor con cifras de igual ancho. */
+  .cifras {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .campo {
+    @apply block w-full rounded border border-linea bg-white px-3 py-2 text-sm;
+  }
+
+  .boton {
+    @apply inline-flex items-center justify-center rounded px-4 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .boton-principal {
+    @apply boton bg-tinta text-white hover:bg-tintaSuave;
+  }
+
+  .boton-secundario {
+    @apply boton border border-linea bg-white text-tinta hover:bg-papel;
+  }
+
+  .boton-peligro {
+    @apply boton bg-red-800 text-white hover:bg-red-700;
+  }
+
+  .enlace {
+    @apply font-medium text-tintaSuave underline underline-offset-2 hover:text-tinta;
+  }
+}
