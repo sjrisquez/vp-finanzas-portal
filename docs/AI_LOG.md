@@ -16,8 +16,8 @@ Herramientas usadas: <completar>
 
 ### Error 1
 
-**Qué propuso la IA:** 
+**Qué propuso la IA:** Generar el archivo bundle del repositorio con `git bundle create archivo.bundle main`.
 
-**Por qué estaba mal:** 
+**Por qué estaba mal:** El bundle no incluía `HEAD`, así que `git clone` no creó la rama `main` y `git push` falló con `src refspec main does not match any`.
 
-**Cómo se corrigió:** 
+**Cómo se corrigió:** Se creó la rama local con `git switch -c main origin/main` y se volvió a ejecutar el push.
