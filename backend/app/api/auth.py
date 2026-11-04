@@ -31,6 +31,8 @@ def a_usuario_actual(usuario: Usuario) -> UsuarioActual:
     departamento = colaborador.cargo.departamento
     return UsuarioActual(
         id=usuario.id,
+        colaborador_id=colaborador.id,
+        cargo_id=colaborador.cargo_id,
         nombres=colaborador.nombres,
         apellidos=colaborador.apellidos,
         correo=colaborador.correo,

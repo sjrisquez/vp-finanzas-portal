@@ -15,6 +15,8 @@ class DepartamentoResumen(BaseModel):
 
 class UsuarioActual(BaseModel):
     id: int
+    colaborador_id: int
+    cargo_id: int
     nombres: str
     apellidos: str
     correo: str
