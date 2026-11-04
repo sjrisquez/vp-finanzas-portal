@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api import auth
+from app.api import auth, cargos, colaboradores, departamentos
 from app.config import settings
 
 logger = logging.getLogger(__name__)
@@ -28,6 +28,9 @@ def error_inesperado(request: Request, exc: Exception) -> JSONResponse:
 
 
 app.include_router(auth.router)
+app.include_router(departamentos.router)
+app.include_router(colaboradores.router)
+app.include_router(cargos.router)
 
 
 @app.get("/api/health")
