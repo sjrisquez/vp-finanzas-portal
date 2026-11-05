@@ -102,6 +102,14 @@ Herramientas usadas: Claude
 
 **Cómo se corrigió:** Se creó la rama local con `git switch -c main origin/main` y se volvió a ejecutar el push.
 
+### Error 2
+
+**Qué propuso la IA:** Un README que generaba `JWT_SECRET` en el paso del backend, sin indicar que debía guardarse en `.env` antes de ejecutar las migraciones.
+
+**Por qué estaba mal:** Quien siguiera el README podía obtener un error en `alembic upgrade head`, porque la configuración exige ese secreto.
+
+**Cómo se corrigió:** Lo detecté al revisar la instalación desde un clon limpio y agregué la instrucción al README.
+
 ---
 
 Nota: los veredictos se redactaron con apoyo de la IA a partir de mis decisiones y pruebas, y los revisé antes de subirlos.

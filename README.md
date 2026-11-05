@@ -40,6 +40,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python -c "import secrets; print(secrets.token_urlsafe(48))"
+# Pega el resultado en JWT_SECRET dentro de .env y guarda antes de continuar
 alembic upgrade head
 python -m app.seed.seed
 uvicorn app.main:app --reload
