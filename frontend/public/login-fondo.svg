@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="pared" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7E3DC"/>
+      <stop offset="1" stop-color="#C9C3B8"/>
+    </linearGradient>
+    <linearGradient id="acero" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7F8B93"/>
+      <stop offset="0.45" stop-color="#C3CBD0"/>
+      <stop offset="0.7" stop-color="#9AA5AC"/>
+      <stop offset="1" stop-color="#6F7B83"/>
+    </linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C5D6D6"/>
+      <stop offset="1" stop-color="#8FA6A8"/>
+    </linearGradient>
+    <linearGradient id="pantalla" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#17324D"/>
+      <stop offset="1" stop-color="#2B4C6F"/>
+    </linearGradient>
+    <linearGradient id="mesa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4F2EE"/>
+      <stop offset="1" stop-color="#BDB7AC"/>
+    </linearGradient>
+    <filter id="desenfoque" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="brillo" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#desenfoque)" transform="translate(-40 -24) scale(1.05)">
+    <rect width="1600" height="900" fill="url(#pared)"/>
+    <rect width="1600" height="70" fill="#F3F1EC"/>
+    <rect x="1000" y="40" width="460" height="16" rx="8" fill="#FFFFFF"/>
+
+    <!-- Paneles de vidrio y acero -->
+    <rect x="0" y="70" width="210" height="830" fill="url(#vidrio)"/>
+    <rect x="60" y="70" width="4" height="830" fill="#E9F0F0" opacity=".7"/>
+    <rect x="140" y="70" width="6" height="830" fill="#E9F0F0" opacity=".5"/>
+    <rect x="210" y="70" width="430" height="830" fill="url(#acero)"/>
+    <rect x="210" y="330" width="430" height="3" fill="#6B767E" opacity=".6"/>
+    <rect x="210" y="610" width="430" height="3" fill="#6B767E" opacity=".6"/>
+    <rect x="640" y="70" width="210" height="830" fill="url(#vidrio)" opacity=".85"/>
+
+    <!-- Pantalla con indicadores abstractos -->
+    <rect x="1090" y="210" width="510" height="330" rx="10" fill="#0F2438"/>
+    <rect x="1104" y="224" width="496" height="302" fill="url(#pantalla)"/>
+    <rect x="1104" y="224" width="70" height="302" fill="#17324D"/>
+    <rect x="1190" y="244" width="400" height="262" rx="6" fill="#EEF3F7"/>
+    <g fill="#5F8FBF">
+      <rect x="1215" y="400" width="24" height="80"/>
+      <rect x="1250" y="360" width="24" height="120"/>
+      <rect x="1285" y="420" width="24" height="60"/>
+      <rect x="1320" y="340" width="24" height="140"/>
+      <rect x="1355" y="380" width="24" height="100"/>
+    </g>
+    <circle cx="1500" cy="350" r="52" fill="none" stroke="#2B4C6F" stroke-width="20"/>
+    <rect x="1215" y="270" width="150" height="16" rx="8" fill="#9DB4C9"/>
+    <rect x="1215" y="300" width="100" height="12" rx="6" fill="#C5D3DF"/>
+
+    <!-- Mesa de reuniones -->
+    <path d="M820 900 L980 740 L1600 720 L1600 900 Z" fill="url(#mesa)"/>
+    <rect x="1440" y="620" width="100" height="170" rx="14" fill="#2E3840"/>
+    <rect x="1300" y="650" width="90" height="130" rx="14" fill="#3A454E"/>
+  </g>
+
+  <!-- Luz suave sobre el acero, sin logotipos -->
+  <ellipse cx="425" cy="400" rx="150" ry="230" fill="#FFFFFF" opacity=".45" filter="url(#brillo)"/>
+  <rect width="1600" height="900" fill="#17324D" opacity=".12"/>
+</svg>

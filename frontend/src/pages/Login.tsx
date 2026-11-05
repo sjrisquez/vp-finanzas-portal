@@ -29,36 +29,48 @@ export function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-tinta p-4">
-      <form onSubmit={enviar} className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
-        <h1 className="text-2xl font-bold text-tinta">Portal VP de Finanzas</h1>
-        <p className="mt-1 text-sm text-tenue">Entra con tu correo interno.</p>
+    <div className="login-fondo flex min-h-screen items-center justify-center p-4">
+      <form onSubmit={enviar} className="login-tarjeta w-full max-w-md rounded-3xl p-6 sm:p-10">
+        <h1 className="text-3xl font-bold tracking-tight text-tinta">Portal VP de Finanzas</h1>
+        <p className="mt-1 text-sm text-texto">Entra con tu correo interno.</p>
 
-        <label className="mt-6 block text-sm font-medium" htmlFor="correo">
+        <label className="mt-7 block text-sm font-medium" htmlFor="correo">
           Correo
         </label>
-        <input
-          id="correo"
-          className="campo mt-1"
-          type="email"
-          autoComplete="username"
-          required
-          value={correo}
-          onChange={(e) => setCorreo(e.target.value)}
-        />
+        <div className="relative mt-1">
+          <svg className="login-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+          <input
+            id="correo"
+            className="login-campo"
+            type="email"
+            autoComplete="username"
+            required
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+          />
+        </div>
 
         <label className="mt-4 block text-sm font-medium" htmlFor="password">
           Contraseña
         </label>
-        <input
-          id="password"
-          className="campo mt-1"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="relative mt-1">
+          <svg className="login-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+            <rect x="5" y="11" width="14" height="10" rx="2" />
+            <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+          </svg>
+          <input
+            id="password"
+            className="login-campo"
+            type="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
         {error !== null && (
           <div className="mt-4">
@@ -66,7 +78,7 @@ export function Login() {
           </div>
         )}
 
-        <button type="submit" disabled={enviando} className="boton-principal mt-6 w-full">
+        <button type="submit" disabled={enviando} className="login-boton mt-7">
           {enviando ? "Entrando…" : "Entrar"}
         </button>
       </form>
