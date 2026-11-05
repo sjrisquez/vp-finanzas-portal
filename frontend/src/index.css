@@ -16,22 +16,32 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
 @layer components {
   /* Los montos y fechas se alinean mejor con cifras de igual ancho. */
   .cifras {
     font-variant-numeric: tabular-nums;
   }
 
+  .superficie {
+    @apply rounded-xl border border-linea bg-white shadow-sm;
+  }
+
   .campo {
-    @apply block w-full rounded border border-linea bg-white px-3 py-2 text-sm;
+    @apply block w-full rounded-lg border border-linea bg-white px-3 py-2 text-sm transition-colors hover:border-tenue;
   }
 
   .boton {
-    @apply inline-flex items-center justify-center rounded px-4 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .boton-principal {
-    @apply boton bg-tinta text-white hover:bg-tintaSuave;
+    @apply boton bg-tinta text-white shadow-sm hover:bg-tintaSuave;
   }
 
   .boton-secundario {
@@ -43,6 +53,6 @@
   }
 
   .enlace {
-    @apply font-medium text-tintaSuave underline underline-offset-2 hover:text-tinta;
+    @apply font-medium text-tintaSuave underline decoration-linea underline-offset-4 hover:text-tinta hover:decoration-tinta;
   }
 }

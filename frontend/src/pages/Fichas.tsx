@@ -24,7 +24,7 @@ function FichaColaboradorContenido({ id }: { id: number }) {
       </h1>
       <p className="mt-1 text-sm text-tenue">{datos.correo}</p>
 
-      <dl className="mt-6 grid gap-5 rounded border border-linea bg-white p-6 sm:grid-cols-3">
+      <dl className="mt-6 grid gap-5 superficie p-6 sm:grid-cols-3">
         <Dato etiqueta="Cargo">
           <Link className="enlace" to={`/cargos/${datos.cargo.id}`}>
             {datos.cargo.nombre}
@@ -54,7 +54,7 @@ function FichaCargoContenido({ id }: { id: number }) {
   return (
     <>
       <h2 className="text-xl font-bold text-tinta">{datos.nombre}</h2>
-      <dl className="mt-4 grid gap-5 rounded border border-linea bg-white p-6 sm:grid-cols-3">
+      <dl className="mt-4 grid gap-5 superficie p-6 sm:grid-cols-3">
         <Dato etiqueta="Departamento">{datos.departamento.nombre}</Dato>
         <Dato etiqueta="Nivel">{datos.nivel.nombre}</Dato>
         <Dato etiqueta="Jefatura">{datos.es_jefatura ? "Sí" : "No"}</Dato>

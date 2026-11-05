@@ -64,7 +64,7 @@ export function NotasCredito() {
               role="tab"
               aria-selected={soloMiFirma === pestana.valor}
               onClick={() => setSoloMiFirma(pestana.valor)}
-              className={`-mb-px border-b-2 px-4 py-2 text-sm font-semibold ${
+              className={`-mb-px border-b-2 px-4 py-2 transition-colors text-sm font-semibold ${
                 soloMiFirma === pestana.valor ? "border-tinta text-tinta" : "border-transparent text-tenue"
               }`}
             >
@@ -116,14 +116,14 @@ export function NotasCredito() {
         {notas.isLoading && <Cargando />}
         {notas.isError && <MensajeError error={notas.error} />}
         {notas.isSuccess && filas.length === 0 && (
-          <p className="rounded border border-linea bg-white p-6 text-sm text-tenue">
+          <p className="superficie p-6 text-sm text-tenue">
             {soloMiFirma ? "No tienes notas pendientes de firma." : "No hay notas con estos filtros."}
           </p>
         )}
         {filas.length > 0 && (
-          <div className="overflow-x-auto rounded border border-linea bg-white">
+          <div className="overflow-x-auto superficie">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-linea text-xs text-tenue">
+              <thead className="border-b border-linea bg-papel/60 text-xs text-tenue">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Código</th>
                   <th className="px-4 py-3 font-semibold">Departamento</th>
@@ -135,7 +135,7 @@ export function NotasCredito() {
               </thead>
               <tbody>
                 {filas.map((nota) => (
-                  <tr key={nota.id} className="border-b border-linea last:border-0">
+                  <tr key={nota.id} className="border-b border-linea transition-colors last:border-0 hover:bg-papel/60">
                     <td className="cifras whitespace-nowrap px-4 py-3">
                       <Link className="enlace" to={`/notas/${nota.id}`}>
                         {nota.codigo}

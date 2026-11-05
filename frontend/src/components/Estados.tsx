@@ -15,7 +15,7 @@ export function MensajeError({ mensaje, error }: { mensaje?: string; error?: unk
   const texto =
     mensaje ?? (error instanceof ApiError ? error.message : "No se pudo completar la operación.");
   return (
-    <p role="alert" className="rounded border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-900">
+    <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
       {texto}
     </p>
   );
@@ -40,7 +40,7 @@ const COLOR_ESTADO: Record<EstadoNota, string> = {
 export function EtiquetaEstado({ estado }: { estado: EstadoNota }) {
   return (
     <span
-      className={`inline-block whitespace-nowrap rounded-sm border-l-4 px-2 py-0.5 text-xs font-semibold ${COLOR_ESTADO[estado]}`}
+      className={`inline-block whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold ${COLOR_ESTADO[estado]}`}
     >
       {NOMBRE_ESTADO[estado]}
     </span>

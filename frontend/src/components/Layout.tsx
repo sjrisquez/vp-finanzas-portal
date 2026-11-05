@@ -42,7 +42,7 @@ export function Layout() {
               key={clave}
               to={MODULOS[clave].ruta}
               className={({ isActive }: { isActive: boolean }) =>
-                `whitespace-nowrap rounded px-3 py-2 text-sm font-medium ${
+                `whitespace-nowrap rounded-lg px-3 py-2 transition-colors text-sm font-medium ${
                   isActive ? "bg-white text-tinta" : "text-white hover:bg-tintaSuave"
                 }`
               }

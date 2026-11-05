@@ -94,14 +94,14 @@ export function Directorio() {
         {colaboradores.isLoading && <Cargando />}
         {colaboradores.isError && <MensajeError error={colaboradores.error} />}
         {colaboradores.isSuccess && filas.length === 0 && (
-          <p className="rounded border border-linea bg-white p-6 text-sm text-tenue">
+          <p className="superficie p-6 text-sm text-tenue">
             Nadie coincide con estos filtros. Prueba con una búsqueda más amplia.
           </p>
         )}
         {filas.length > 0 && (
-          <div className="overflow-x-auto rounded border border-linea bg-white">
+          <div className="overflow-x-auto superficie">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-linea text-xs text-tenue">
+              <thead className="border-b border-linea bg-papel/60 text-xs text-tenue">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Nombre</th>
                   <th className="px-4 py-3 font-semibold">Cargo</th>
@@ -121,7 +121,7 @@ export function Directorio() {
                   const nombre = `${fila.apellidos}, ${fila.nombres}`;
                   const puedeAbrir = esDetalle(fila) || fila.id === usuario.colaborador_id;
                   return (
-                    <tr key={fila.id} className="border-b border-linea last:border-0">
+                    <tr key={fila.id} className="border-b border-linea transition-colors last:border-0 hover:bg-papel/60">
                       <td className="whitespace-nowrap px-4 py-3 font-medium">
                         {puedeAbrir ? (
                           <Link className="enlace" to={`/colaboradores/${fila.id}`}>

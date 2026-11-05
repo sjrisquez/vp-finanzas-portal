@@ -126,7 +126,7 @@ export function NotaFormulario() {
         {reenvio ? `Corregir ${nota.data?.codigo ?? ""}` : "Crear nota de crédito"}
       </h1>
 
-      <form onSubmit={enviar} className="mt-5 grid max-w-3xl gap-4 rounded border border-linea bg-white p-6 sm:grid-cols-2">
+      <form onSubmit={enviar} className="mt-5 grid max-w-3xl gap-4 superficie p-6 sm:grid-cols-2">
         {!reenvio && usuario.rol === "ADMIN" && (
           <div className="sm:col-span-2">
             <label htmlFor="departamento" className="text-sm font-medium">
@@ -242,7 +242,7 @@ export function NotaFormulario() {
         </div>
 
         {superaUmbral && umbrales.data && (
-          <p className="rounded border-l-4 border-blue-400 bg-blue-50 px-3 py-2 text-sm text-blue-900 sm:col-span-2">
+          <p className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-900 sm:col-span-2">
             Supera {formatearMonto(umbrales.data[moneda], moneda)}: necesitará la firma de dos aprobadores distintos.
           </p>
         )}

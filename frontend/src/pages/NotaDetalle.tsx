@@ -88,7 +88,7 @@ export function NotaDetalle() {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-5">
         <div className="space-y-6 lg:col-span-3">
-          <dl className="grid gap-5 rounded border border-linea bg-white p-6 sm:grid-cols-2">
+          <dl className="grid gap-5 superficie p-6 sm:grid-cols-2">
             <Dato etiqueta="Motivo">{datos.motivo.nombre}</Dato>
             <Dato etiqueta="Departamento">{datos.departamento.nombre}</Dato>
             <Dato etiqueta="Solicitante">{datos.solicitante}</Dato>
@@ -103,7 +103,7 @@ export function NotaDetalle() {
           </dl>
 
           {firmas.length > 0 && (
-            <section aria-labelledby="titulo-decision" className="rounded border border-linea bg-white p-6">
+            <section aria-labelledby="titulo-decision" className="superficie p-6">
               <h2 id="titulo-decision" className="font-semibold text-tinta">
                 Tu decisión
               </h2>

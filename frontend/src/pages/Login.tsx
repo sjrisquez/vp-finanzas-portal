@@ -30,7 +30,7 @@ export function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-tinta p-4">
-      <form onSubmit={enviar} className="w-full max-w-sm rounded bg-white p-8">
+      <form onSubmit={enviar} className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
         <h1 className="text-2xl font-bold text-tinta">Portal VP de Finanzas</h1>
         <p className="mt-1 text-sm text-tenue">Entra con tu correo interno.</p>
 
